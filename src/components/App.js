@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from '../images/icons/Paper-Plane.svg';
 import './App.css';
+import { connect } from 'react-redux';
+import {handleInitialData} from '../actions/shared';
 
 
 let NavBar = function() {
@@ -32,6 +34,10 @@ let ListInfo = function() {
 }
 
 class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(handleInitialData())
+  }
+
   render() {
     return (
       <div className="App" style={{display:"flex"}}>
@@ -42,4 +48,11 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps ({ authedUser }) {
+  return {
+    loading: authedUser === null
+  }
+}
+
+// export default App
+export default connect(mapStateToProps)(App)

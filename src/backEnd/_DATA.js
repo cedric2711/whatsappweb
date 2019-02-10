@@ -116,6 +116,6 @@ export function _getUsers () {
 
 export function _getChats () {
   return new Promise((res, rej) => {
-    setTimeout(() => res({...questions}), 1000)
+    setTimeout(() => res({...chats}), 1000)
   })
 }
