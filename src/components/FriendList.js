@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import FriendListInfo from './FriendListInfo';
 
 const FriendList = function ({ userInfo }) {
     if(!userInfo){
@@ -9,7 +10,7 @@ const FriendList = function ({ userInfo }) {
     let friedIDs = Object.keys(friendList);
     return (
         <div>
-            {friedIDs.map((frd) => (<div key={frd}>{frd}</div>))}
+            {friedIDs.map((frd) => (<FriendListInfo key={frd} friendID={frd}/>))}
         </div>
     );
 }
