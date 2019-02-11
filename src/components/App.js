@@ -4,6 +4,7 @@ import './App.css';
 import { connect } from 'react-redux';
 import {handleInitialData} from '../actions/shared';
 import ListInfo from './ListInfo';
+import ChatWindow from './ChatWindow';
 
 
 class App extends Component {
@@ -15,15 +16,17 @@ class App extends Component {
     return (
       <div className="App" style={{display:"flex"}}>
         <ListInfo />
-        <div>Chat window</div>
+        <ChatWindow/>
       </div>
     );
   }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser, activeChat, friendChat }) {
   return {
-    loading: authedUser === null
+    loading: authedUser === null,
+    authedUser,
+    activeChat
   }
 }
 
