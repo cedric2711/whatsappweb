@@ -5,7 +5,8 @@ const extractChat = (user, userChat, chats) =>{
         if(chats[chatID]){
             let chat= chats[chatID];
             return {
-                text:chat.text,
+                id: chatID,
+                text: chat.text,
                 timestamp: chat.timestamp,
                 user 
             }

@@ -1,6 +1,7 @@
 import {
   _getUsers,
-  _getChats
+  _getChats,
+  _updateChat
 } from './_DATA.js'
 
 export function getInitialData () {
@@ -11,4 +12,8 @@ export function getInitialData () {
     users,
     chats,
   }))
+}
+
+export function updateChat(chat) {
+  return _updateChat(chat);
 }
