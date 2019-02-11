@@ -95,7 +95,7 @@ let users = {
   simon: {
     id: "simon",
     name: "Simon Jude",
-    avatarURL: "src/images/icons/Man-1.svg",
+    avatarURL: "images/icons/Man-1.svg",
     friendList: {
       chetan: ["id1", "id3", "id5"],
       cedric: ["id8", "id10", "id12"]
@@ -104,7 +104,7 @@ let users = {
   chetan: {
     id: "chetan",
     name: "Chetan Narvekar",
-    avatarURL: "src/images/icons/Man-6.svg",
+    avatarURL: "images/icons/Man-6.svg",
     friendList: {
       simon: ["id2", "id4", "id6"],
       cedric: ["id13", "id15", "id17"]
@@ -113,7 +113,7 @@ let users = {
   cedric: {
     id: "cedric",
     name: "Cedric Mascarenhas",
-    avatarURL: "src/images/icons/Man-9.svg",
+    avatarURL: "images/icons/Man-9-.svg",
     friendList: {
       simon: ["id7", "id9", "id11"],
       chetan: ["id14", "id16", "id18"]

@@ -3,6 +3,25 @@ import { connect } from 'react-redux';
 import {formatChat} from '../utils/commonUtils';
 import {setActiveChat} from '../actions/activeChat';
 import {setFriendChat} from '../actions/friendChat';
+import { withStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Avatar from '@material-ui/core/Avatar';
+import ImageIcon from '@material-ui/icons/Image';
+import WorkIcon from '@material-ui/icons/Work';
+import BeachAccessIcon from '@material-ui/icons/BeachAccess';
+
+const styles = {
+    avatar: {
+      margin: 10,
+    },
+    bigAvatar: {
+      margin: 10,
+      width: 60,
+      height: 60,
+    },
+  };
 
 class FriendListInto extends React.Component{
     selectChat =(e) =>{
@@ -16,14 +35,16 @@ class FriendListInto extends React.Component{
     }
 
     render() {
-    let {friendID} = this.props;
+    let {friendID, users, classes} = this.props;
     if(!friendID){
         return (<div>No List</div>);
     }
+    let {avatarURL, name} = users[friendID];
         return (
-            <div onClick={(e)=>this.selectChat(e)}>
-                {friendID}
-            </div>
+            <ListItem onClick={(e)=>this.selectChat(e)}>
+                 <Avatar alt={name} src={require(`../${avatarURL}`)} className={classes.bigAvatar} />
+                <ListItemText primary={name} secondary="Jan 9, 2014" />
+            </ListItem>
         );
     };
 }
@@ -44,4 +65,4 @@ function mapStateToProps({ authedUser, users, chats },{friendID}) {
     }
 }
 
-export default connect(mapStateToProps)(FriendListInto)
+export default connect(mapStateToProps)(withStyles(styles)(FriendListInto))

@@ -39,6 +39,11 @@ class ChatWindow extends Component {
 
     render () {
         let {textMessage} = this.state;
+        if(!this.props.activeChat){
+            return (
+                <div>No Chat Selected</div>
+            );
+        }
         return(
             <div>
                <ChatSection />

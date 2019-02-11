@@ -7,7 +7,21 @@ import ListInfo from './ListInfo';
 import ChatWindow from './ChatWindow';
 import {LoadingBar} from 'react-redux-loading';
 import Login from './Login';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+});
 
 class App extends Component {
   componentDidMount() {
@@ -15,20 +29,31 @@ class App extends Component {
   }
 
   render() {
-    let {authedUser, loading} = this.props;
+    let {authedUser, loading, classes} = this.props;
 
     return (
-      <div className="App" style={{display:"flex"}}>
-        <LoadingBar style={{backgroundColor: "blue", position: "relative", top:"-80px"}}/>
+      
+      <div className={classes.root}>
+        <LoadingBar />
+        <Grid container justify="center" spacing={24}>
+        
         {
           !authedUser?
           <Login />:
           <Fragment>
-            <ListInfo />
-            <ChatWindow/>
+          <Grid item xs={3}>
+            <Paper className={classes.paper}>
+              <ListInfo />
+            </Paper>
+          </Grid>
+          <Grid item xs={8}>
+          <Paper className={classes.paper}>
+             <ChatWindow/>
+          </Paper>
+          </Grid>
           </Fragment>
         }
-        
+        </Grid>
       </div>
     );
   }
@@ -43,4 +68,4 @@ function mapStateToProps ({ authedUser, activeChat, friendChat }) {
 }
 
 // export default App
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(withStyles(styles)(App))
