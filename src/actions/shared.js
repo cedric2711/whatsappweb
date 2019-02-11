@@ -4,9 +4,10 @@ import { receiveChats, updateChatInformation } from './chats';
 import { setAuthedUser} from './authedUser';
 import { setFriendChat} from './friendChat';
 import { setActiveChat, updateActiveChat} from './activeChat';
+import { setFilter} from './filterUsers';
 import { showLoading, hideLoading } from 'react-redux-loading';
 
-const AUTHED_ID = 'simon';
+const AUTHED_ID = null;
 
 export function handleInitialData () {
   return (dispatch) => {
@@ -18,6 +19,7 @@ export function handleInitialData () {
         dispatch(dispatch(setAuthedUser(AUTHED_ID)));
         dispatch(dispatch(setFriendChat(null)));
         dispatch(dispatch(setActiveChat(null)));
+        dispatch(dispatch(setFilter(null)));
         dispatch(hideLoading());
       })
   }
@@ -35,5 +37,16 @@ export function updateChatInfo (chatInput) {
       dispatch(updateActiveChat({id:chat.id, text: chat.text, timestamp:chat.timestamp, user: chatInput.authedUser}))
       dispatch(hideLoading());
     })
+  }
+}
+
+export function logout () {
+  return (dispatch) => {
+    dispatch(showLoading());
+    dispatch(dispatch(setAuthedUser(null)));
+    dispatch(dispatch(setFriendChat(null)));
+    dispatch(dispatch(setActiveChat(null)));
+    dispatch(dispatch(setFilter(null)));
+    dispatch(hideLoading());
   }
 }

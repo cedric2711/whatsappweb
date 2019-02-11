@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import logo from '../images/icons/Paper-Plane.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import {handleInitialData} from '../actions/shared';
 import ListInfo from './ListInfo';
 import ChatWindow from './ChatWindow';
+import {LoadingBar} from 'react-redux-loading';
+import Login from './Login';
 
 
 class App extends Component {
@@ -13,10 +15,20 @@ class App extends Component {
   }
 
   render() {
+    let {authedUser, loading} = this.props;
+
     return (
       <div className="App" style={{display:"flex"}}>
-        <ListInfo />
-        <ChatWindow/>
+        <LoadingBar style={{backgroundColor: "blue", position: "relative", top:"-80px"}}/>
+        {
+          !authedUser?
+          <Login />:
+          <Fragment>
+            <ListInfo />
+            <ChatWindow/>
+          </Fragment>
+        }
+        
       </div>
     );
   }

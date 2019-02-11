@@ -4,6 +4,7 @@ import chats from './chats';
 import authedUser from './authedUser';
 import friendChat from './friendChat';
 import activeChat from './activeChat';
+import filterUsers from './filterUsers';
 import { loadingBarReducer } from 'react-redux-loading';
 
 export default combineReducers({
@@ -12,5 +13,6 @@ export default combineReducers({
   chats,
   activeChat,
   friendChat,
+  filterUsers,
   loadingBar: loadingBarReducer,
 })
