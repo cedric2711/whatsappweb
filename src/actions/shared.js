@@ -1,15 +1,15 @@
 import { getInitialData, updateChat } from '../backEnd/api';
 import { receiveUsers, updateUserInformation } from './users';
 import { receiveChats, updateChatInformation } from './chats';
-import { setAuthedUser} from './authedUser';
-import { setFriendChat} from './friendChat';
-import { setActiveChat, updateActiveChat} from './activeChat';
-import { setFilter} from './filterUsers';
+import { setAuthedUser } from './authedUser';
+import { setFriendChat } from './friendChat';
+import { setActiveChat, updateActiveChat } from './activeChat';
+import { setFilter } from './filterUsers';
 import { showLoading, hideLoading } from 'react-redux-loading';
 
 const AUTHED_ID = null;
 
-export function handleInitialData () {
+export function handleInitialData() {
   return (dispatch) => {
     dispatch(showLoading());
     return getInitialData()
@@ -25,22 +25,22 @@ export function handleInitialData () {
   }
 }
 
-export function updateChatInfo (chatInput) {
+export function updateChatInfo(chatInput) {
   return (dispatch) => {
     dispatch(showLoading());
     return updateChat(chatInput)
-    .then((chat) => {
-      console.log(chatInput);
-      console.log(chat);
-      dispatch(updateChatInformation(chat));
-      dispatch(updateUserInformation({id:chat.id, authedUser: chatInput.authedUser, friendChat: chatInput.friendChat}))
-      dispatch(updateActiveChat({id:chat.id, text: chat.text, timestamp:chat.timestamp, user: chatInput.authedUser}))
-      dispatch(hideLoading());
-    })
+      .then((chat) => {
+        console.log(chatInput);
+        console.log(chat);
+        dispatch(updateChatInformation(chat));
+        dispatch(updateUserInformation({ id: chat.id, authedUser: chatInput.authedUser, friendChat: chatInput.friendChat }))
+        dispatch(updateActiveChat({ id: chat.id, text: chat.text, timestamp: chat.timestamp, user: chatInput.authedUser }))
+        dispatch(hideLoading());
+      })
   }
 }
 
-export function logout () {
+export function logout() {
   return (dispatch) => {
     dispatch(showLoading());
     dispatch(dispatch(setAuthedUser(null)));
