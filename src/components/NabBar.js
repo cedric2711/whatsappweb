@@ -13,6 +13,14 @@ import classNames from 'classnames';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Cancel from '@material-ui/icons/Cancel';
+import Search from '@material-ui/icons/Search';
+import ArrowBack from '@material-ui/icons/ArrowBack';
 
 const styles = theme => ({
   root: {
@@ -44,6 +52,26 @@ const styles = theme => ({
     width: 60,
     height: 60,
   },
+  margin: {
+    margin: theme.spacing.unit,
+  },
+  withoutBorder:{
+    '&:before':{
+      borderBottom: 0
+    },
+    '&:after':{
+      borderBottom: 0
+    },
+    '&:hover':{
+      borderBottom: 0
+    }
+  },
+  withoutLabel: {
+    borderRadius: 24,
+    // margin: "11px 0",
+    marginTop: 11,
+    background: "white"
+  },
 });
 
 
@@ -56,6 +84,14 @@ class NavBar extends Component{
   };
 
   updateSearch =(e)=> (this.setState({searchText:e.target.value}));
+
+  resetSearch = (e) =>{
+    let {searchText} = this.state;
+    if(searchText){
+      this.setState({searchText:""})
+      this.props.dispatch(setFilter(null));
+    }
+  };
 
   checkForEnter = (e) => {
       if(e.key === 'Enter'){
@@ -80,21 +116,41 @@ class NavBar extends Component{
           <Button color="inherit" onClick={(e)=>this.logout(e)}>Logout</Button>
         </Toolbar>
       </AppBar>
-      {/* <form className={classes.container} noValidate autoComplete="off"> */}
-        <TextField
-          id="filter-user"
-          label="Search"
-          className={classes.textField}
-          value={searchText}
-          onChange={(e)=>this.updateSearch(e)}
-          onKeyDown={(e)=> this.checkForEnter(e)}
-          margin="normal"
+        <FormControl
+          className={classNames(classes.withoutLabel)}
+          fullWidth
           variant="filled"
-        />
-      {/* </form> */}
-        {/* <div>
-          <input onChange={(e)=>this.updateSearch(e)} onKeyDown={(e)=> this.checkForEnter(e)} value={searchText}/>
-        </div> */}
+        >
+          <Input
+            id="adornment-weight"
+            value={searchText}
+            className={classes.withoutBorder}
+            onChange={(e)=>this.updateSearch(e)}
+            onKeyDown={(e)=> this.checkForEnter(e)}
+            aria-describedby="weight-helper-text"
+            startAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                aria-label="Toggle password visibility"
+                onClick={this.resetSearch}
+                >
+                {searchText?<ArrowBack/>:<Search/>}
+              </IconButton>
+              </InputAdornment>
+            }
+            endAdornment={<InputAdornment position="end">
+            <IconButton
+            aria-label="Toggle password visibility"
+            onClick={this.resetSearch}
+            >
+            {searchText?<Cancel/>:""}
+          </IconButton>
+          </InputAdornment>}
+            inputProps={{
+              'aria-label': 'Weight',
+            }}
+          />
+        </FormControl>
       </div>
     )
   }

@@ -8,6 +8,7 @@ import ChatWindow from './ChatWindow';
 import {LoadingBar} from 'react-redux-loading';
 import Login from './Login';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -15,12 +16,21 @@ import Grid from '@material-ui/core/Grid';
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    marginTop: 10
   },
   paper: {
-    padding: theme.spacing.unit * 2,
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    height: "96%"
   },
+  listinfo: {
+    background: "gainsboro"
+  },
+  chatwindow:{
+    background: "#efe7dd url(https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg) repeat"
+  }
 });
 
 class App extends Component {
@@ -42,12 +52,12 @@ class App extends Component {
           <Login />:
           <Fragment>
           <Grid item xs={3}>
-            <Paper className={classes.paper}>
+            <Paper className={classNames(classes.paper, classes.listinfo)}>
               <ListInfo />
             </Paper>
           </Grid>
           <Grid item xs={8}>
-          <Paper className={classes.paper}>
+          <Paper className={`${classes.paper} ${classes.chatwindow}`}>
              <ChatWindow/>
           </Paper>
           </Grid>

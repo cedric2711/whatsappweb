@@ -15,7 +15,7 @@ const extractChat = (user, userChat, chats) =>{
 }
 
 export const formatChat = (authedUser, authUserChat, frndID, frndChat, chats) => {
-    debugger;
+    
     let chatHistory = extractChat(authedUser, authUserChat, chats);
     chatHistory = chatHistory.concat(extractChat(frndID, frndChat, chats));
     return chatHistory.sort((a,b)=> a.timestamp - b.timestamp);

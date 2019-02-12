@@ -55,7 +55,7 @@ class Login extends Component {
     }
 
     handleSubmit = (e) => {
-        debugger;
+        
         this.props.dispatch(setAuthedUser(this.state.authedUserId));
     }
 

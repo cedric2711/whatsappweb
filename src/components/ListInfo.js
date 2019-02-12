@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import NavBar from "./NabBar";
 import FriendList from './FriendList';
 
 const ListInfo = function() {
   return (
-    <div>
+    <Fragment>
       <NavBar />
       <FriendList />
-    </div>
+    </Fragment>
   );
 }
 

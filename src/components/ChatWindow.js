@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import { connect } from 'react-redux';
 import ChatSection from './ChatSection';
 import {updateChatInfo} from '../actions/shared';
@@ -13,8 +13,7 @@ const styles = theme => ({
       flexWrap: 'wrap',
     },
     textField: {
-      marginLeft: theme.spacing.unit,
-      marginRight: theme.spacing.unit,
+      background: "#fff"
     },
     dense: {
       marginTop: 16,
@@ -47,7 +46,7 @@ class ChatWindow extends Component {
         }))
 
         setTimeout(function(state, props) {
-            debugger;
+            
             props.dispatch(updateChatInfo({
                 message: getRandomMessage(),
                 authedUser: props.friendChat,
@@ -66,14 +65,14 @@ class ChatWindow extends Component {
             );
         }
         return(
-            <div>
+            <Fragment>
                <ChatSection />
                <TextField
                 id="chat-text-field"
-                label="Chat"
-                style={{ margin: 8 }}
-                placeholder="Placeholder"
-                helperText="Enter Text Here!"
+                // label="Chat"
+                placeholder="Type a message "
+                // helperText="Enter Text Here!"
+                className={classes.textField}
                 fullWidth
                 margin="normal"
                 variant="outlined"
@@ -83,11 +82,7 @@ class ChatWindow extends Component {
                     shrink: true,
                 }}
                 />
-               {/* <div>
-                   <input type="text" value={textMessage} onChange= {(e) =>this.messageChange(e)} onKeyDown= {(e)=>this.checkForEnter(e)} />
-                   <input type="submit" onClick={(e)=>this.updateChat(e)}/>
-                </div> */}
-            </div>
+            </Fragment>
         );
     }
 };
