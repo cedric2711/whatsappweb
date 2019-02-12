@@ -6,6 +6,10 @@ import { getRandomMessage } from '../utils/randomMessage';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+
+import Send from '@material-ui/icons/Send';
 
 const styles = theme => ({
     container: {
@@ -13,7 +17,8 @@ const styles = theme => ({
       flexWrap: 'wrap',
     },
     textField: {
-      background: "#fff"
+      background: "#fff",
+      width: "90%"
     },
     dense: {
       marginTop: 16,
@@ -39,6 +44,10 @@ class ChatWindow extends Component {
     }
 
     updateChat = (e) => {
+        if(!this.state.textMessage){
+            this.setState({textMessage:""});
+            return false;
+        }
         this.props.dispatch(updateChatInfo({
             message: this.state.textMessage,
             authedUser:this.props.authedUser,
@@ -61,7 +70,7 @@ class ChatWindow extends Component {
         let {classes} = this.props;
         if(!this.props.activeChat){
             return (
-                <div>No Chat Selected</div>
+                <div>Do select a chat to view.</div>
             );
         }
         return(
@@ -70,10 +79,18 @@ class ChatWindow extends Component {
                <TextField
                 id="chat-text-field"
                 // label="Chat"
-                placeholder="Type a message "
-                // helperText="Enter Text Here!"
+                placeholder="Type a message"
+                InputProps= {{
+                    endAdornment:<InputAdornment position="end">
+                    <IconButton
+                    aria-label="Type a message to send."
+                    onClick={this.updateChat}
+                    >
+                    {textMessage?<Send/>:""}
+                </IconButton>
+                </InputAdornment>
+                }}
                 className={classes.textField}
-                fullWidth
                 margin="normal"
                 variant="outlined"
                 value={textMessage} onChange= {(e) =>this.messageChange(e)}

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {formatChat} from '../utils/commonUtils';
+import {formatChat, getFullDate} from '../utils/commonUtils';
 import {setActiveChat} from '../actions/activeChat';
 import {setFriendChat} from '../actions/friendChat';
 import { withStyles } from '@material-ui/core/styles';
@@ -22,6 +22,9 @@ const styles = {
       width: 60,
       height: 60,
     },
+    centerSpace: {
+        width: "75%"
+    },
     cardSpace: {
       background:"white",
       marginTop:5,
@@ -35,37 +38,45 @@ const styles = {
   };
 
 class FriendListInto extends Component{
-    selectChat =(e) =>{
-        
-        let {authedUser, chats, users, friendID, dispatch} = this.props;
+    extractChatHistory =() => {
+        let {authedUser, chats, users, friendID} = this.props;
         let authChat = users[authedUser].friendList[friendID];
         let frndChat = users[friendID].friendList[authedUser];
-        let formatedChat = formatChat(authedUser, authChat, friendID, frndChat, chats);
+        let formatedSortedChat = formatChat(authedUser, authChat, friendID, frndChat, chats);
+        return formatedSortedChat;
+    }
+    selectChat =(e) =>{
+        let {dispatch, friendID} = this.props;
+        let formatedChat = this.extractChatHistory();
         dispatch(setActiveChat(formatedChat));
         dispatch(setFriendChat(friendID));
     }
 
     render() {
-    let {friendID, users, classes, friendChat} = this.props;
+    let {friendID, users, classes, friendChat, activeChat} = this.props;
     if(!friendID){
         return (<div>No List</div>);
     }
     let setActive=(friendChat===friendID)?true:false;
 
     let {avatarURL, name} = users[friendID];
+    let formatedChat = (setActive)?activeChat:this.extractChatHistory();
+    let {text, timestamp }= formatedChat[formatedChat.length-1];
+    let lastDate = getFullDate(new Date(timestamp));
         return (
             <ListItem 
             className={setActive?classNames(classes.cardSpace, classes.selectedChat): classes.cardSpace}
             onClick={(e)=>this.selectChat(e)}
             >
-                 <Avatar alt={name} src={require(`../${avatarURL}`)} className={classes.bigAvatar} />
-                <ListItemText primary={name} secondary="Jan 9, 2014" />
+                 <Avatar alt={name} src={require(`../${avatarURL}`)} className={classes.avatar} />
+                <ListItemText className={classes.centerSpace} primary={name} secondary={text} />
+                <ListItemText secondary={lastDate}/>
             </ListItem>
         );
     };
 }
 
-function mapStateToProps({ authedUser, users, chats, friendChat },{friendID}) {
+function mapStateToProps({ authedUser, users, chats, friendChat, activeChat },{friendID}) {
     let chatList = null;
     if (friendID && authedUser) {
         chatList = users[authedUser].friendList[friendID];
@@ -78,7 +89,8 @@ function mapStateToProps({ authedUser, users, chats, friendChat },{friendID}) {
         users,
         chats,
         authedUser,
-        friendChat
+        friendChat,
+        activeChat
     }
 }
 

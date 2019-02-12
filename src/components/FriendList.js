@@ -13,7 +13,7 @@ import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 const styles = theme => ({
     root: {
       width: '100%',
-      maxWidth: 360,
+        minWidth: 325,
       height: 516
     },
   });

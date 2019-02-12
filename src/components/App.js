@@ -26,10 +26,12 @@ const styles = theme => ({
     height: "96%"
   },
   listinfo: {
-    background: "gainsboro"
+    background: "gainsboro",
+    minWidth: 330
   },
   chatwindow:{
-    background: "#efe7dd url(https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg) repeat"
+    background: "#efe7dd url(https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg) repeat",
+    minWidth:660
   }
 });
 
@@ -39,25 +41,25 @@ class App extends Component {
   }
 
   render() {
-    let {authedUser, loading, classes} = this.props;
+    let {authedUser, classes} = this.props;
 
     return (
       
       <div className={classes.root}>
         <LoadingBar />
-        <Grid container justify="center" spacing={24}>
+        <Grid container justify="center" spacing={24} style={{minWidth:990}}>
         
         {
           !authedUser?
           <Login />:
           <Fragment>
-          <Grid item xs={3}>
+          <Grid item xs={4}>
             <Paper className={classNames(classes.paper, classes.listinfo)}>
               <ListInfo />
             </Paper>
           </Grid>
           <Grid item xs={8}>
-          <Paper className={`${classes.paper} ${classes.chatwindow}`}>
+          <Paper className={classNames(classes.paper, classes.chatwindow)}>
              <ChatWindow/>
           </Paper>
           </Grid>

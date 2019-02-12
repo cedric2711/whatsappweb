@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import {getTime} from '../utils/commonUtils';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -19,6 +20,12 @@ const styles = theme => ({
         maxWidth: 400,
         margin: `${theme.spacing.unit}px auto`,
         padding: theme.spacing.unit * 2,
+    },
+    date: {
+        fontSize: 11,
+        height: 15,
+        float: "right",
+        whiteSpace: "nowrap"
     },
     message: {
         color: "#000",
@@ -90,15 +97,13 @@ class ChatSection extends Component {
                             activeClass = "send";
                         }
                         let addRef =(activeChat.length === (index + 1))?true:false;
-
+                        let time= getTime(chat.timestamp);
                         return (
                             <Paper className={`${classes.paper} ${classes.message} ${classes[activeClass]}`} key={chat.id} tabIndex={addRef?"0":""} ref={addRef?"ref1":""}>
                                 <Grid container wrap="nowrap" spacing={16}>
-                                    <Grid item>
-                                        <Avatar>W</Avatar>
-                                    </Grid>
                                     <Grid item xs>
                                         <Typography>{chat.text}</Typography>
+                                        <Typography className={classes.date}>{time}</Typography>
                                     </Grid>
                                 </Grid>
                             </Paper>

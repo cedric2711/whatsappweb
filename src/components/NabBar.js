@@ -94,8 +94,14 @@ class NavBar extends Component{
   };
 
   checkForEnter = (e) => {
-      if(e.key === 'Enter'){
+      console.log(e.key);
+      console.log(e.target.value.length);
+      if(e.key === "Enter"){
           this.updateFriendList();
+      }
+      
+      if(e.key==="Backspace" && e.target.value.length===1) {
+        this.resetSearch(e);
       }
   }
 
