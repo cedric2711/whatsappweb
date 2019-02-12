@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import ChatSection from './ChatSection';
 import {updateChatInfo} from '../actions/shared';
 import { getRandomMessage } from '../utils/randomMessage';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -12,20 +11,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Send from '@material-ui/icons/Send';
 
 const styles = theme => ({
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
     textField: {
       background: "#fff",
       width: "90%"
-    },
-    dense: {
-      marginTop: 16,
-    },
-    menu: {
-      width: 200,
-    },
+    }
   });
 
 class ChatWindow extends Component {

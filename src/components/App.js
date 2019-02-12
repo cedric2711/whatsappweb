@@ -1,13 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import logo from '../images/icons/Paper-Plane.svg';
 import './App.css';
 import { connect } from 'react-redux';
-import {handleInitialData} from '../actions/shared';
+import { handleInitialData } from '../actions/shared';
 import ListInfo from './ListInfo';
 import ChatWindow from './ChatWindow';
-import {LoadingBar} from 'react-redux-loading';
+import { LoadingBar } from 'react-redux-loading';
 import Login from './Login';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -29,9 +27,9 @@ const styles = theme => ({
     background: "gainsboro",
     minWidth: 330
   },
-  chatwindow:{
+  chatwindow: {
     background: "#efe7dd url(https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg) repeat",
-    minWidth:660
+    minWidth: 660
   }
 });
 
@@ -41,37 +39,36 @@ class App extends Component {
   }
 
   render() {
-    let {authedUser, classes} = this.props;
+    let { authedUser, classes } = this.props;
 
     return (
-      
+
       <div className={classes.root}>
         <LoadingBar />
-        <Grid container justify="center" spacing={24} style={{minWidth:990}}>
-        
-        {
-          !authedUser?
-          <Login />:
-          <Fragment>
-          <Grid item xs={4}>
-            <Paper className={classNames(classes.paper, classes.listinfo)}>
-              <ListInfo />
-            </Paper>
-          </Grid>
-          <Grid item xs={8}>
-          <Paper className={classNames(classes.paper, classes.chatwindow)}>
-             <ChatWindow/>
-          </Paper>
-          </Grid>
-          </Fragment>
-        }
+        <Grid container justify="center" spacing={24} style={{ minWidth: 990 }}>
+          {
+            !authedUser ?
+              <Login /> :
+              <Fragment>
+                <Grid item xs={4}>
+                  <Paper className={classNames(classes.paper, classes.listinfo)}>
+                    <ListInfo />
+                  </Paper>
+                </Grid>
+                <Grid item xs={8}>
+                  <Paper className={classNames(classes.paper, classes.chatwindow)}>
+                    <ChatWindow />
+                  </Paper>
+                </Grid>
+              </Fragment>
+          }
         </Grid>
       </div>
     );
   }
 }
 
-function mapStateToProps ({ authedUser, activeChat, friendChat }) {
+function mapStateToProps({ authedUser, activeChat, friendChat }) {
   return {
     loading: authedUser === null,
     authedUser,
@@ -79,5 +76,4 @@ function mapStateToProps ({ authedUser, activeChat, friendChat }) {
   }
 }
 
-// export default App
 export default connect(mapStateToProps)(withStyles(styles)(App))

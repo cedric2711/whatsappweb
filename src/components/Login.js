@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser';
-import PropTypes from 'prop-types';
+import logo from '../images/icons/Paper-Plane.svg';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -50,42 +45,40 @@ const styles = theme => ({
 });
 
 class Login extends Component {
-    state={
-        authedUserId:""
+    state = {
+        authedUserId: ""
     }
 
     handleSubmit = (e) => {
-        
+
         this.props.dispatch(setAuthedUser(this.state.authedUserId));
     }
 
-    handleChange = (e)=>{
+    handleChange = (e) => {
         this.setState({
-            authedUserId:e.target.value
+            authedUserId: e.target.value
         });
     }
     render() {
         const { classes, usersID } = this.props;
-        const {authedUserId} = this.state;
+        const { authedUserId } = this.state;
 
         return (
             <main className={classes.main}>
                 <CssBaseline />
                 <Paper className={classes.paper}>
-                    <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon />
-                    </Avatar>
+                    <Avatar src={logo} alt="logo" className={classes.avatar} />
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <form className={classes.form} onSubmit={(e)=>this.handleSubmit(e)} >
+                    <form className={classes.form} onSubmit={(e) => this.handleSubmit(e)} >
                         <FormControl margin="normal" required fullWidth>
                             <Select
                                 value={authedUserId}
                                 onChange={this.handleChange}
                                 name='user'
                                 displayEmpty
-                                >
+                            >
                                 <MenuItem value='' disabled>Select user</MenuItem>
                                 {usersID.map((id) => (
                                     <MenuItem key={id} value={id}>{id}</MenuItem>
@@ -108,10 +101,6 @@ class Login extends Component {
     }
 }
 
-// Login.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-
 function mapStateToProps({ users }) {
     return {
         users,
@@ -120,4 +109,3 @@ function mapStateToProps({ users }) {
 }
 
 export default connect(mapStateToProps)(withStyles(styles)(Login))
-// export default withStyles(styles)(Login);

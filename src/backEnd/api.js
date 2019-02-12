@@ -4,7 +4,7 @@ import {
   _updateChat
 } from './_DATA.js'
 
-export function getInitialData () {
+export function getInitialData() {
   return Promise.all([
     _getUsers(),
     _getChats(),
