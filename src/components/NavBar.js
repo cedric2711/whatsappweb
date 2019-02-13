@@ -71,8 +71,6 @@ export class NavBar extends Component{
   };
 
   checkForEnter = (e) => {
-      console.log(e.key);
-      console.log(e.target.value.length);
       if(e.key === "Enter"){
           this.updateFriendList();
       }

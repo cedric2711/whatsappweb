@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow} from 'enzyme';
+import {Select, Button} from '@material-ui/core';
 
 import { Login } from './Login';
 
@@ -46,5 +47,17 @@ describe('Login Component', () => {
         it('should render correctly and match Snapshot', () => {
             expect(wrapper).toMatchSnapshot();
         });
+
+        it('should contain a form element', () =>{
+            expect(wrapper.find('form')).toHaveLength(1);
+        })
+
+        it('should contain a Select element', () =>{
+            expect(wrapper.find(Select)).toHaveLength(1);
+        })
+
+        it('should contain a Button element', () =>{
+            expect(wrapper.find(Button)).toHaveLength(1);
+        })
     });
 });

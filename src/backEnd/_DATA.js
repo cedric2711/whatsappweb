@@ -167,9 +167,7 @@ export function _updateChat(chat) {
           }
         }
       }
-      console.log('chats');
-      console.log(chats);
-      console.log(users);
+      
       res(formattedChat)
     }, 1000)
   })

@@ -71,11 +71,11 @@ export class Login extends Component {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <form className={classes.form} onSubmit={(e) => this.handleSubmit(e)} >
+                    <form className={classes.form} onSubmit={this.handleSubmit.bind(this)} >
                         <FormControl margin="normal" required fullWidth>
                             <Select
                                 value={authedUserId}
-                                onChange={this.handleChange}
+                                onChange={this.handleChange.bind(this)}
                                 name='user'
                                 displayEmpty
                             >

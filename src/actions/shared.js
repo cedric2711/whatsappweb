@@ -30,8 +30,6 @@ export function updateChatInfo(chatInput) {
     dispatch(showLoading());
     return updateChat(chatInput)
       .then((chat) => {
-        console.log(chatInput);
-        console.log(chat);
         dispatch(updateChatInformation(chat));
         dispatch(updateUserInformation({ id: chat.id, authedUser: chatInput.authedUser, friendChat: chatInput.friendChat }))
         dispatch(updateActiveChat({ id: chat.id, text: chat.text, timestamp: chat.timestamp, user: chatInput.authedUser }))
