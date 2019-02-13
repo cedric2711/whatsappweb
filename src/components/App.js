@@ -70,8 +70,7 @@ export class App extends Component {
 function mapStateToProps({ authedUser, activeChat }) {
   return {
     loading: authedUser === null,
-    authedUser,
-    activeChat
+    authedUser
   }
 }
 

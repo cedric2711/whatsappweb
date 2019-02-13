@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { FormControl, AppBar } from '@material-ui/core';
 
 import { NavBar } from './NavBar';
 
@@ -53,6 +54,14 @@ describe('NavBar Component', () => {
     describe('NavBar', () => {
         it('should render correctly and match Snapshot', () => {
             expect(wrapper).toMatchSnapshot();
+        });
+
+        it('should contain a AppBar component', () => {
+            expect(wrapper.find(AppBar)).toHaveLength(1);
+        });
+
+        it('should contain a FormControl component', () => {
+            expect(wrapper.find(FormControl)).toHaveLength(1);
         });
     });
 });
