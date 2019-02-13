@@ -16,7 +16,7 @@ const styles = theme => ({
     }
 });
 
-const FriendList = function ({ userInfo, filterUsers, classes, users }) {
+export const FriendList = function ({ userInfo, filterUsers, classes, users }) {
     if (!userInfo) {
         return (<div>Users info not Available.</div>);
     }

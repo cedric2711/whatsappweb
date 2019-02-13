@@ -28,7 +28,7 @@ const styles = {
     }
 };
 
-class FriendListInto extends Component {
+export class FriendListInfo extends Component {
     extractChatHistory = () => {
         let { authedUser, chats, users, friendID } = this.props;
         let authChat = users[authedUser].friendList[friendID];
@@ -79,4 +79,4 @@ function mapStateToProps({ authedUser, users, chats, friendChat, activeChat }, {
     }
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(FriendListInto))
+export default connect(mapStateToProps)(withStyles(styles)(FriendListInfo))

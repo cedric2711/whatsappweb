@@ -71,7 +71,7 @@ const styles = theme => ({
     }
 });
 
-class ChatSection extends Component {
+export class ChatSection extends Component {
     componentDidMount() {
         ReactDOM.findDOMNode(this.refs.ref1).focus();
     }

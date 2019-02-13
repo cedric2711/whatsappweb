@@ -44,7 +44,7 @@ const styles = theme => ({
     },
 });
 
-class Login extends Component {
+export class Login extends Component {
     state = {
         authedUserId: ""
     }

@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import './App.css';
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 import ListInfo from './ListInfo';
@@ -33,7 +32,7 @@ const styles = theme => ({
   }
 });
 
-class App extends Component {
+export class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
@@ -68,7 +67,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, activeChat, friendChat }) {
+function mapStateToProps({ authedUser, activeChat }) {
   return {
     loading: authedUser === null,
     authedUser,

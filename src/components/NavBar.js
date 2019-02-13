@@ -52,7 +52,7 @@ const styles = theme => ({
 });
 
 
-class NavBar extends Component{
+export class NavBar extends Component{
   state ={
     searchText: ""
   }

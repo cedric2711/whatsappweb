@@ -17,7 +17,7 @@ const styles = theme => ({
     }
 });
 
-class ChatWindow extends Component {
+export class ChatWindow extends Component {
     state = {
         textMessage: ""
     }
