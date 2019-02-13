@@ -1,8 +1,8 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import NavBar from "./NabBar";
 import FriendList from './FriendList';
 
-const ListInfo = function() {
+const ListInfo = function () {
   return (
     <Fragment>
       <NavBar />

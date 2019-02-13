@@ -8,15 +8,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import classNames from 'classnames';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
 import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Cancel from '@material-ui/icons/Cancel';
 import Search from '@material-ui/icons/Search';
@@ -29,31 +24,14 @@ const styles = theme => ({
   grow: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
-  dense: {
-    marginTop: 16,
-  },
-  menu: {
-    width: 200,
   },
   bigAvatar: {
     margin: 10,
     width: 60,
     height: 60,
-  },
-  margin: {
-    margin: theme.spacing.unit,
   },
   withoutBorder:{
     '&:before':{
@@ -68,7 +46,6 @@ const styles = theme => ({
   },
   withoutLabel: {
     borderRadius: 24,
-    // margin: "11px 0",
     marginTop: 11,
     background: "white"
   },

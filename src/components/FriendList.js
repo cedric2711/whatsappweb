@@ -3,24 +3,22 @@ import { connect } from 'react-redux';
 import FriendListInfo from './FriendListInfo';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
-import WorkIcon from '@material-ui/icons/Work';
-import BeachAccessIcon from '@material-ui/icons/BeachAccess';
+import classNames from 'classnames';
 
 const styles = theme => ({
     root: {
-      width: '100%',
+        width: '100%',
         minWidth: 325,
-      height: 516
+        height: 516
     },
-  });
+    noContact: {
+        marginTop: 15
+    }
+});
 
 const FriendList = function ({ userInfo, filterUsers, classes }) {
     if (!userInfo) {
-        return (<div>No List</div>);
+        return (<div>Users info not Available.</div>);
     }
     let { friendList } = userInfo;
     let friedIDs = Object.keys(friendList);
@@ -32,7 +30,9 @@ const FriendList = function ({ userInfo, filterUsers, classes }) {
             return false;
         })
     }
-    
+    if (friedIDs.length === 0) {
+        return (<div className={classNames(classes.root, classes.noContact)}>No Contact to display</div>);
+    }
     return (
         <List className={classes.root}>
             {friedIDs.map((frd) => (<FriendListInfo key={frd} friendID={frd} />))}
