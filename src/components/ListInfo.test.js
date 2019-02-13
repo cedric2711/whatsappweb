@@ -3,13 +3,6 @@ import { shallow} from 'enzyme';
 
 import ListInfo from './ListInfo';
 
-const styles = theme => ({
-    textField: {
-        background: "#fff",
-        width: "90%"
-    }
-});
-
 describe('ListInfo Component', () => {
     describe('ListInfo', () => {
         let wrapper = shallow(<ListInfo/>);
