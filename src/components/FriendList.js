@@ -16,7 +16,7 @@ const styles = theme => ({
     }
 });
 
-const FriendList = function ({ userInfo, filterUsers, classes }) {
+const FriendList = function ({ userInfo, filterUsers, classes, users }) {
     if (!userInfo) {
         return (<div>Users info not Available.</div>);
     }
@@ -24,7 +24,8 @@ const FriendList = function ({ userInfo, filterUsers, classes }) {
     let friedIDs = Object.keys(friendList);
     if (filterUsers) {
         friedIDs = friedIDs.filter((frnd) => {
-            if (frnd.indexOf(filterUsers) > -1) {
+            let lowerCaseFiter = filterUsers.toLowerCase();
+            if (frnd.toLowerCase().indexOf(lowerCaseFiter) > -1 || users[frnd].name.toLowerCase().indexOf(lowerCaseFiter) > -1) {
                 return true;
             }
             return false;
