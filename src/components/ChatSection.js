@@ -48,12 +48,12 @@ const styles = theme => ({
         }
     },
     send: {
-        background: '#e1ffc7',
+        background: '#A8B3F0',
         borderRadius: "5px 0px 5px 5px",
         float: 'right',
         '&:after': {
             borderWidth: "0px 0 10px 10px",
-            borderColor: "transparent transparent transparent #e1ffc7",
+            borderColor: "transparent transparent transparent #A8B3F0",
             top: 0,
             right: -10
         }

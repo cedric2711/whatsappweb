@@ -21,6 +21,7 @@ export class ChatWindow extends Component {
     state = {
         textMessage: ""
     }
+
     messageChange = (e) => {
         let text = e.target.value;
         this.setState({ textMessage: text });

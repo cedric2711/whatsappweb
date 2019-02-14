@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {logout} from '../actions/shared';
-import {setFilter} from '../actions/filterUsers';
+import { logout } from '../actions/shared';
+import { setFilter } from '../actions/filterUsers';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -24,6 +24,9 @@ const styles = theme => ({
   grow: {
     flexGrow: 1,
   },
+  appBar: {
+    background: '#1C2E90'
+  },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -33,14 +36,14 @@ const styles = theme => ({
     width: 60,
     height: 60,
   },
-  withoutBorder:{
-    '&:before':{
+  withoutBorder: {
+    '&:before': {
       borderBottom: 0
     },
-    '&:after':{
+    '&:after': {
       borderBottom: 0
     },
-    '&:hover':{
+    '&:hover': {
       borderBottom: 0
     }
   },
@@ -52,51 +55,51 @@ const styles = theme => ({
 });
 
 
-export class NavBar extends Component{
-  state ={
+export class NavBar extends Component {
+  state = {
     searchText: ""
   }
-  logout = (e) =>{
+  logout = (e) => {
     this.props.dispatch(logout());
   };
 
-  updateSearch =(e)=> (this.setState({searchText:e.target.value}));
+  updateSearch = (e) => (this.setState({ searchText: e.target.value }));
 
-  resetSearch = (e) =>{
-    let {searchText} = this.state;
-    if(searchText){
-      this.setState({searchText:""})
+  resetSearch = (e) => {
+    let { searchText } = this.state;
+    if (searchText) {
+      this.setState({ searchText: "" })
       this.props.dispatch(setFilter(null));
     }
   };
 
   checkForEnter = (e) => {
-      if(e.key === "Enter"){
-          this.updateFriendList();
-      }
-      
-      if(e.key==="Backspace" && e.target.value.length===1) {
-        this.resetSearch(e);
-      }
+    if (e.key === "Enter") {
+      this.updateFriendList();
+    }
+
+    if (e.key === "Backspace" && e.target.value.length === 1) {
+      this.resetSearch(e);
+    }
   }
 
-  updateFriendList =(e) =>{
+  updateFriendList = (e) => {
     this.props.dispatch(setFilter(this.state.searchText));
   }
-  render() { 
-  let {searchText} = this.state;
-  let {classes, user} = this.props;
-  return (
+  render() {
+    let { searchText } = this.state;
+    let { classes, user } = this.props;
+    return (
       <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Avatar alt={user.name} src={require(`../${user.avatarURL}`)} className={classes.bigAvatar} />
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            {user.name}
-          </Typography>
-          <Button color="inherit" onClick={(e)=>this.logout(e)}>Logout</Button>
-        </Toolbar>
-      </AppBar>
+        <AppBar position="static" className={classes.appBar}>
+          <Toolbar>
+            <Avatar alt={user.name} src={require(`../${user.avatarURL}`)} className={classes.bigAvatar} />
+            <Typography variant="h6" color="inherit" className={classes.grow}>
+              {user.name}
+            </Typography>
+            <Button color="inherit" onClick={(e) => this.logout(e)}>Logout</Button>
+          </Toolbar>
+        </AppBar>
         <FormControl
           className={classNames(classes.withoutLabel)}
           fullWidth
@@ -106,27 +109,27 @@ export class NavBar extends Component{
             id="adornment-weight"
             value={searchText}
             className={classes.withoutBorder}
-            onChange={(e)=>this.updateSearch(e)}
-            onKeyDown={(e)=> this.checkForEnter(e)}
+            onChange={(e) => this.updateSearch(e)}
+            onKeyDown={(e) => this.checkForEnter(e)}
             aria-describedby="weight-helper-text"
             startAdornment={
               <InputAdornment position="end">
                 <IconButton
-                aria-label="Toggle password visibility"
-                onClick={this.resetSearch}
+                  aria-label="Toggle password visibility"
+                  onClick={this.resetSearch}
                 >
-                {searchText?<ArrowBack/>:<Search/>}
-              </IconButton>
+                  {searchText ? <ArrowBack /> : <Search />}
+                </IconButton>
               </InputAdornment>
             }
             endAdornment={<InputAdornment position="end">
-            <IconButton
-            aria-label="Toggle password visibility"
-            onClick={this.resetSearch}
-            >
-            {searchText?<Cancel/>:""}
-          </IconButton>
-          </InputAdornment>}
+              <IconButton
+                aria-label="Toggle password visibility"
+                onClick={this.resetSearch}
+              >
+                {searchText ? <Cancel /> : ""}
+              </IconButton>
+            </InputAdornment>}
             inputProps={{
               'aria-label': 'Weight',
             }}
@@ -137,7 +140,7 @@ export class NavBar extends Component{
   }
 }
 
-function mapStateToProps ({ authedUser, users }) {
+function mapStateToProps({ authedUser, users }) {
   return {
     user: users[authedUser]
   }
